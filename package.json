@@ -1,0 +1,14 @@
+{
+  "name": "drag-drop-proj",
+  "version": "1.0.0",
+  "description": "A simple drag and drop project that I create for the purpose of leanring TS",
+  "main": "index.js",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "author": "Nam Nguyen",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.5.4"
+  }
+}
