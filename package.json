@@ -4,11 +4,17 @@
   "description": "A simple drag and drop project that I create for the purpose of leanring TS",
   "main": "index.js",
   "scripts": {
-    "start": "lite-server"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "author": "Nam Nguyen",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.5.4"
+    "lite-server": "^2.5.4",
+    "ts-loader": "^8.0.3",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
