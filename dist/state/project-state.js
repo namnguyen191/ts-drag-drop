@@ -1,59 +1,41 @@
 import { Project, ProjectStatus } from '../models/project.js';
-
-// STATE MANAGEMENT CLASS
-type Listener<T> = (items: T[]) => void;
-
-class State<T> {
-    protected listeners: Listener<T>[] = [];
-
-    addListeners(listenerFn: Listener<T>) {
+class State {
+    constructor() {
+        this.listeners = [];
+    }
+    addListeners(listenerFn) {
         this.listeners.push(listenerFn);
     }
 }
-
-export class ProjectState extends State<Project> {
-    private projects: Project[] = [];
-    private static instance: ProjectState;
-
-    private constructor() {
+export class ProjectState extends State {
+    constructor() {
         super();
+        this.projects = [];
     }
-
     static getInstance() {
         if (this.instance) {
             return this.instance;
         }
-
         this.instance = new ProjectState();
         return this.instance;
     }
-
-    addProject(title: string, description: string, numOfPeople: number) {
-        const newProject = new Project(
-            Math.random().toString(),
-            title,
-            description,
-            numOfPeople,
-            ProjectStatus.Active
-        );
-
+    addProject(title, description, numOfPeople) {
+        const newProject = new Project(Math.random().toString(), title, description, numOfPeople, ProjectStatus.Active);
         this.projects.push(newProject);
         this.updateListener();
     }
-
-    moveProject(projectId: string, newStatus: ProjectStatus) {
+    moveProject(projectId, newStatus) {
         const project = this.projects.find((prj) => prj.id === projectId);
         if (project && project.status !== newStatus) {
             project.status = newStatus;
             this.updateListener();
         }
     }
-
-    private updateListener() {
+    updateListener() {
         for (const listenerFn of this.listeners) {
             listenerFn(this.projects.slice());
         }
     }
 }
-
 export const projectState = ProjectState.getInstance();
+//# sourceMappingURL=project-state.js.map

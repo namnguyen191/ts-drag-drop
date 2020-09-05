@@ -1,11 +1,7 @@
 // AUTOBIND DECORATOR
-export function AutoBind(
-    target: any,
-    methodName: string,
-    descriptor: PropertyDescriptor
-) {
+export function AutoBind(target, methodName, descriptor) {
     const originalMethod = descriptor.value;
-    const adjMethod: PropertyDescriptor = {
+    const adjMethod = {
         configurable: true,
         get() {
             const boundFn = originalMethod.bind(this);
@@ -14,3 +10,4 @@ export function AutoBind(
     };
     return adjMethod;
 }
+//# sourceMappingURL=autobind.js.map
